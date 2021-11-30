@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+
+import CheckBoxDisplay from './components/checkBoxDisplay.js';
+import NavBar from './components/navBar/navBar.js';
+import SearchBar from './components/searchBar.js';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div className="container">
+      
+      {/* define a basic structure here first and then call components. */}
+      <NavBar/>
+      <SearchBar/>
+      <CheckBoxDisplay/>
+
+
     </div>
   );
 }
 
 export default App;
+
