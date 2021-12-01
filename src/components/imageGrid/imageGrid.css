@@ -1,0 +1,39 @@
+.card {
+    width: 175px;
+    font-size: 12px;
+    flex: 0 0 auto;         
+    display: flex;         
+    flex-direction: column; 
+    position: relative;
+    margin: 4px;
+    
+}
+
+.card--image {
+    width: 100%;
+    border-radius: 9px;
+    
+}
+
+.img-grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; 
+}
+
+.cont{
+    width: 800px;
+    height: auto;
+    padding: 10px;
+}
+
+
+@media screen and (max-width: 760px) {
+    .cont{
+        width: 400px;
+        height: auto;
+        padding: 10px;
+    }
+    
+    
+}
