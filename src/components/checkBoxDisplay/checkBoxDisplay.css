@@ -1,0 +1,22 @@
+.table-style{
+    font-size: 20px;
+    border: 3px solid #04AA6D;
+    width: 300px;
+    background-color: blue;
+    text-indent: 20px;
+    letter-spacing: 1px;
+    align: left;
+    color:white;
+    font-family: "Times New Roman", Times, serif;
+ }
+ .block {
+    display: block;
+    width: 361px;
+    border: none;
+    background-color: #04AA6D;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+
