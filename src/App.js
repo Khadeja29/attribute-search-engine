@@ -7,15 +7,19 @@ import './App.css';
 function App() {
   return (
     
-    <div className="container">
+    <div>
+       <NavBar/>
+       <div className="container">
       
       {/* define a basic structure here first and then call components. */}
-      <NavBar/>
+  
       <SearchBar/>
       <CheckBoxDisplay/>
 
 
+      </div>
     </div>
+   
   );
 }
 
