@@ -2,14 +2,17 @@
 import NavBar from './components/navBar/navBar.js';
 import './App.css';
 import ImageCard from './components/imageGrid/ImageCard.js';
+import CheckBoxDisplay from './checkBoxDisplay/checkBoxDisplay.js';
+
 
 function App() {
   return (
     
     <div>
        <NavBar/>
-
+       <CheckBoxDisplay/>
        <div className='cont'>
+          
           <div className='img-grid'>
          
             <ImageCard img={"000001.jpg"}/>
@@ -28,6 +31,7 @@ function App() {
             <ImageCard img={"000015.jpg"}/>
          
           </div>
+
        </div>
        
        

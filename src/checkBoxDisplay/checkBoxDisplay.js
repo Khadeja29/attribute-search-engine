@@ -1,7 +1,7 @@
 import React from 'react';
 import './checkBoxDisplay.css';
 
-class checkBoxDisplay extends React.Component {
+class CheckBoxDisplay extends React.Component {
 
     constructor(props){
       super(props);
@@ -614,7 +614,7 @@ class checkBoxDisplay extends React.Component {
   }
 }
 
-export default checkBoxDisplay;
+export default CheckBoxDisplay;
 
         
         
