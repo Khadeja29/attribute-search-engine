@@ -19,4 +19,12 @@ body {
   padding: 5px;
 }
 
+.main--container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.main--checkbox{
+  position: fixed;
+}
