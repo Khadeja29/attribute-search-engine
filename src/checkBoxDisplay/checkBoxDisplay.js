@@ -16,18 +16,33 @@ class CheckBoxDisplay extends React.Component {
         const target = event.target;
         var value = target.value;
         if(target.checked){
-        this.state.attributes.push(value);
-          
-        }else{
+           this.state.attributes.push(value);
+        }
+        else{
         this.state.attributes.splice(value, 1);
         }
-        console.log(this.state.attributes); 
+        //console.log(this.state.attributes); 
         }
       
 
       submit = () => {
         console.log(`You have clicked the Submit Choices button`);
+        console.log(this.state.attributes); 
+
+        const options = {
+          method: "POST",
+          body: JSON.stringify(this.state.attributes),
+          headers: {
+              "Content-Type": "application/json"
+          }
       }
+      
+      fetch("https://localhost:3001/faces", options)
+          .then(res => res.json())
+          .then(data => console.log(data))
+
+      }
+
     render(){
 
   return (

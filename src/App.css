@@ -26,5 +26,6 @@ body {
 }
 
 .main--checkbox{
-  position: fixed;
+  position: absolute;
+  top: 50%;
 }

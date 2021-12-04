@@ -11,7 +11,6 @@ function App() {
     <div>
        <NavBar/>
        <div className="main--container">
-         
          <CheckBoxDisplay/>
           <div className='cont'>
             
