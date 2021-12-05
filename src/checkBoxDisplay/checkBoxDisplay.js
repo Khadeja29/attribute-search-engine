@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageCard from '../components/imageGrid/ImageCard';
 import './checkBoxDisplay.css';
 
 class CheckBoxDisplay extends React.Component {
@@ -25,7 +26,7 @@ class CheckBoxDisplay extends React.Component {
         }
       
 
-      submit = () => {
+      submit = (event) => {
         console.log(`You have clicked the Submit Choices button`);
         console.log(this.state.attributes); 
 
@@ -37,10 +38,19 @@ class CheckBoxDisplay extends React.Component {
           }
       }
       
-      fetch("https://localhost:3001/faces", options)
+      fetch("http://localhost:3001/faces/api/v1/search", options)
           .then(res => res.json())
-          .then(data => console.log(data))
+          .then(data => {
+            let results = data.map((img) =>{
+              return (
+                  <ImageCard key={img.image_id} image_id = {img.image_id}/>
+              )
+            })
+            this.props.parentCallback(results);
+            event.preventDefault();
+          })
 
+          
       }
 
     render(){
@@ -439,29 +449,29 @@ class CheckBoxDisplay extends React.Component {
                 </tr>
                 <tr>
                   <th scope="row">28</th>
-                  <td>PointyNoise</td>
+                  <td>PointyNose</td>
                   <td>
                     <div className="custom-control custom-checkbox">
-                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Pointy_Noise=1"/>
+                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Pointy_Nose=1"/>
                     </div>
                   </td>
                   <td>
                     <div className="custom-control custom-checkbox">
-                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Pointy_Noise=-1"/>
+                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Pointy_Nose=-1"/>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">29</th>
-                  <td>ReceedingHairline</td>
+                  <td>RecedingHairline</td>
                   <td>
                     <div className="custom-control custom-checkbox">
-                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Receeding_Hairline=1"/>
+                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Receding_Hairline=1"/>
                     </div>
                   </td>
                   <td>
                     <div className="custom-control custom-checkbox">
-                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Receeding_Hairline=-1"/>
+                      <input type="checkbox" className="custom-control-input" name="attributes" onChange={this.handleInputChange} value="Receding_Hairline=-1"/>
                     </div>
                   </td>
                 </tr>
