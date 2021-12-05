@@ -29,28 +29,34 @@ class CheckBoxDisplay extends React.Component {
       submit = (event) => {
         console.log(`You have clicked the Submit Choices button`);
         console.log(this.state.attributes); 
+        console.log(this.state.attributes.length);
 
-        const options = {
-          method: "POST",
-          body: JSON.stringify(this.state.attributes),
-          headers: {
-              "Content-Type": "application/json"
+        if(this.state.attributes.length !== 0)
+        { 
+            const options = {
+              method: "POST",
+              body: JSON.stringify(this.state.attributes),
+              headers: {
+                  "Content-Type": "application/json"
+              }
           }
-      }
       
-      fetch("http://localhost:3001/faces/api/v1/search", options)
-          .then(res => res.json())
-          .then(data => {
-            let results = data.map((img) =>{
-              return (
-                  <ImageCard key={img.image_id} image_id = {img.image_id}/>
-              )
+        fetch("http://localhost:3001/faces/api/v1/search", options)
+            .then(res => res.json())
+            .then(data => {
+              let results = data.map((img) =>{
+                return (
+                    <ImageCard key={img.image_id} image_id = {img.image_id}/>
+                )
+              })
+              this.props.parentCallback(results);
+              event.preventDefault();
             })
-            this.props.parentCallback(results);
-            event.preventDefault();
-          })
+        }
+        else{
+            //Display a UI such that the user knows no selecion is made
+        }
 
-          
       }
 
     render(){
