@@ -1,8 +1,6 @@
 import React from 'react';
-
 import NavBar from './components/navBar/navBar.js';
 import './App.css';
-import ImageCard from './components/imageGrid/ImageCard.js';
 import CheckBoxDisplay from './checkBoxDisplay/checkBoxDisplay.js';
 
 

@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import DatabaseSelection from './DatabaseSelection'
 
 
 ReactDOM.render(
-    <App />, document.getElementById('root')
+    <DatabaseSelection />, document.getElementById('root')
 );
 
 
