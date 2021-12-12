@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 class DatabaseSelection extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      name: "React"
+      name: ""
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -19,24 +19,30 @@ class DatabaseSelection extends Component {
   formSubmit(event) {
     event.preventDefault();
     console.log(this.state.selectedOption);
+
+    var selection= this.state.selectedOption
+    var opt= []
+    opt.push(selection);
     const options = {
         method: "POST",
-        body: JSON.stringify(this.state.selectedOption),
-        
+        body: JSON.stringify(opt),
+        headers: {
+          "Content-Type": "application/json"
+      }
     }
-  
+   console.log(JSON.stringify(opt));
     fetch("http://localhost:3001/faces/api/v1", options)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            this.props.pCallback(data);
+            
         })
-  
   }
 
   render() {
     return (
       <form onSubmit={this.formSubmit}>
-        <div className="radio">
+        <div >
           <label>
             <input
               type="radio"
@@ -47,7 +53,7 @@ class DatabaseSelection extends Component {
             CelebA
           </label>
         </div>
-        <div className="radio">
+        <div >
           <label>
             <input
               type="radio"
@@ -58,10 +64,7 @@ class DatabaseSelection extends Component {
             LFWA
           </label>
         </div>
-       
-        <div>
-          Selected option is : {this.state.selectedOption}
-        </div>
+      
         <button className="btn btn-default" type="submit">
           Submit
         </button>
@@ -72,3 +75,7 @@ class DatabaseSelection extends Component {
 
 export default DatabaseSelection ;
 
+// 
+/* <div>
+Selected option is : {this.state.selectedOption}
+</div> */
