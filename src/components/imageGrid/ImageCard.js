@@ -28,9 +28,9 @@ export default function ImageCard(props) {
               "Content-Type": "application/json"
           }
       }
-      //console.log(option.body)
+      console.log(option.body)
   
-    fetch(`/faces/api/v1/search/${props.image_id}`, option)
+    fetch(`http://localhost:3001/faces/api/v1/search/${props.image_id}`, option)
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -45,7 +45,6 @@ export default function ImageCard(props) {
           
         })
     }
-
     }
 
     function closeImageEdit()
