@@ -17,22 +17,30 @@ export default function ImageCard(props) {
             'Return_Text' : TextValue,  
         }
         var myArray = fromdetails.Return_Text.split(",")
-        console.log(myArray)
+        //console.log(myArray)
         //query here post 
-        if(myArray.length === 0)
+        if(myArray.length !== 0)
       { 
-        const options = {
-          method: "POST",
+        const option = {
+          method: "PUT",
           body: JSON.stringify(myArray),
           headers: {
               "Content-Type": "application/json"
           }
       }
-      console.log(options.body)
+      //console.log(option.body)
   
-    fetch("http://localhost:3001/faces/api/v1/search", options)
+    fetch(`/faces/api/v1/search/${props.image_id}`, option)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
+            if( data === 'OK')
+            {
+                console.log("Updated")
+            }
+            else{
+                console.log(data)
+            }
         
           
         })
