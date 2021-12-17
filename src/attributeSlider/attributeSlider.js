@@ -65,7 +65,7 @@ class AttributeSelection extends React.Component {
         .then(data => {
           let results = data.map((img) =>{
             return (
-                <ImageCard key={img.image_id} image_id = {img.image_id}/>
+                <ImageCard key={img.image_id} image_id = {img.image_id}/> //pass as props
             )
           })
           this.props.parentCallback(results);

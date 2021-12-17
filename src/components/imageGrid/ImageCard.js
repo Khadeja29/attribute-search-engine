@@ -5,11 +5,52 @@ import TextField from '@material-ui/core/TextField';
 
 export default function ImageCard(props) {
 
+
+
     let results= []
     const [model, setModel] = useState(false);
     const [tempimgSrc, setTempimgSrc] = useState('');
-    //const [imageAttributeList, setImageAttributeList] = useState(null);
-    //const [imageAttributeList] = useState([]);
+    const [TextValue, setTextValue] = useState(results);
+
+    const submitValue = () => {
+        const fromdetails = {
+            'Return_Text' : TextValue,  
+        }
+        var myArray = fromdetails.Return_Text.split(",")
+        console.log(myArray)
+        //query here post 
+        if(myArray.length === 0)
+      { 
+        const options = {
+          method: "POST",
+          body: JSON.stringify(myArray),
+          headers: {
+              "Content-Type": "application/json"
+          }
+      }
+      console.log(options.body)
+  
+    fetch("http://localhost:3001/faces/api/v1/search", options)
+        .then(res => res.json())
+        .then(data => {
+        
+          
+        })
+    }
+
+    }
+
+    function closeImageEdit()
+    {
+        setModel(false)
+        // redirect the query back
+        //props.attribute 
+
+    }
+
+    
+
+
     const getImg = (image) =>{
         setTempimgSrc(image);
         
@@ -18,12 +59,11 @@ export default function ImageCard(props) {
             .then(data => {
                 console.log("att list");
                 console.log(data);
-                //setImageAttributeList(data);
-                //console.log(imageAttributeList);
-                // imageAttributeList = data;
-                // console.log(imageAttributeList);
-                 results = data
-                 //console.log(results)
+               
+                 for (let i = 0; i< data.length; i++){
+                    results[i] = data[i]
+                 }
+
                 setModel(true);
             })
         
@@ -32,29 +72,50 @@ export default function ImageCard(props) {
     return (
         <>
         <div className={model? "model open":"model"}>
-            <img src={`../images/${tempimgSrc}`}/>
-            <CloseIcon onClick={()=>setModel(false)}/>
-            <div className="results">
-            
-            
-            {console.log("Hello this is list")}
-            {console.log(results)}
-            
-            <TextField
 
-                               // value={this.state.title}
+                <div className="container">
+                    <div className="row justify-content-md-center">
+                        
+                        <div className="col-md-auto">
+                            
+                            <img src={`../images/${tempimgSrc}`} style={{width: "250px", borderRadius:"5px"}}/>
+                            <CloseIcon onClick={closeImageEdit}/>
+                        </div>
+                        
+                    </div>
 
-                                //onChange={this.handleChange}
-
-                                defaultValue={results}
-
-                                //onChange={(e) => { this.setState({ title: e.target.value }) }}
-
-                                style={{ width: '100%' }}
-
+                    <div className="row justify-content-md-center">
+                        
+                        <div className="col-md-auto">
+                            
+                            <TextField
+                            label = "Attribute List" 
+                            variant="filled"
+                            helperText = "Kindly Follow the Format stated above!"
+                             
+                            defaultValue={results}
+                            onChange={e => setTextValue(e.target.value)}
+                            style={{ width: '500px', fontSize:"50px", boxSizing:"border-box"}}
+                            
                             />
-            </div>
-            
+                
+                        </div>
+                        
+                    </div>
+                    <div className="row justify-content-md-center">
+                        
+                        <div className="col-md-auto">
+                        <button type="button" id="submit" 
+                             className="btn btn-dark" 
+                             style={{ width:"100px", fontSize: "15px"}}
+                             onClick={submitValue}>Submit!
+                        </button>
+                            
+                        </div>
+                        
+                    </div>
+                    </div>
+
         </div>
         <div className="card" className="pics" key={props.image_id} onClick={()=>getImg(props.image_id)}>
             <img src={`../images/${props.image_id}`} className="card--image" />
